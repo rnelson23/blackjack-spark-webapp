@@ -23,7 +23,7 @@ public class Application {
             session.attribute("money", 0);
 
             Map<String, Object> model = new java.util.HashMap<>();
-            return View.render(model, "velocity/index.vm");
+            return View.render(model, "public/index.vm");
         });
     }
 }

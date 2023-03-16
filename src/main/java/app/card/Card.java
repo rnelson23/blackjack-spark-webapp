@@ -1,10 +1,10 @@
 package app.card;
 
 public class Card {
-    public final Rank rank;
-    public boolean faceUp;
-    public final String face;
-    public final String back;
+    private final Rank rank;
+    private boolean faceUp;
+    private final String face;
+    private final String back;
 
     public Card(Rank rank, String suit) {
         this.rank = rank;
@@ -31,6 +31,14 @@ public class Card {
                 │ ░░░░░░░░░ │
                 │ ░░░░░░░░░ │
                 └───────────┘""";
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public boolean isFaceUp() {
+        return faceUp;
     }
 
     public Card flip() {

@@ -15,12 +15,16 @@ public enum Rank {
     QUEEN("Q", 10),
     KING("K", 10);
 
-    public final String display;
-    public final int value;
+    private final String display;
+    private final int value;
 
     Rank(String display, int value) {
         this.display = display;
         this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     public String leftPad() {

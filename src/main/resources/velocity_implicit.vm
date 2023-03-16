@@ -1,0 +1,5 @@
+#* @implicitly included *#
+#* @vtlvariable name="playerHand" type="app.game.Hand" *#
+#* @vtlvariable name="dealerHand" type="app.game.Hand" *#
+#* @vtlvariable name="message" type="java.lang.String" *#
+#* @vtlvariable name="money" type="java.lang.String" *#

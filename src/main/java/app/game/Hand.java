@@ -6,15 +6,20 @@ import app.card.Rank;
 import java.util.ArrayList;
 
 public class Hand {
-    public final ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     public Hand() {
         cards = new ArrayList<>();
     }
 
+    public void flip() {
+        cards.get(cards.size() - 1).flip();
+    }
+
     public boolean isBlackjack() {
         for (Card card : cards) {
-            if (card.rank != Rank.ACE && card.rank != Rank.TEN) {
+            Rank rank = card.getRank();
+            if (rank != Rank.ACE && rank != Rank.TEN) {
                 return false;
             }
         }
@@ -22,8 +27,8 @@ public class Hand {
         return true;
     }
 
-    public void flip() {
-        cards.get(cards.size() - 1).flip();
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
     public int getValue() {
@@ -31,12 +36,11 @@ public class Hand {
         int numAces = 0;
 
         for (Card card : cards) {
-            if (!card.faceUp) { continue; }
-            if (card.rank == Rank.ACE) {
-                numAces++;
-            }
+            if (!card.isFaceUp()) { continue; }
+            Rank rank = card.getRank();
 
-            value += card.rank.value;
+            if (rank == Rank.ACE) { numAces++; }
+            value += rank.getValue();
         }
 
         while (value > 21 && numAces > 0) {
@@ -45,9 +49,5 @@ public class Hand {
         }
 
         return value;
-    }
-
-    public Card[] getCards() {
-        return cards.toArray(new Card[0]);
     }
 }

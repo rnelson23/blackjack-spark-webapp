@@ -27,27 +27,27 @@ public class Controller {
         session.attribute("bet", bet);
 
         Map<String, Object> model = new java.util.HashMap<>();
-        String template = "velocity/game.vm";
+        String template = "public/game.vm";
 
         model.put("dealerHand", dealerHand);
         model.put("playerHand", playerHand);
 
         if (playerHand.isBlackjack() && !dealerHand.isBlackjack()) {
             money += bet * 1.5;
-            template = "velocity/new.vm";
+            template = "public/new.vm";
 
             model.put("message", "Player has blackjack! Player wins!");
             model.put("money", (money > 0 ? "$" : "-$") + Math.abs(money));
 
         } else if (!playerHand.isBlackjack() && dealerHand.isBlackjack()) {
             money -= bet;
-            template = "velocity/new.vm";
+            template = "public/new.vm";
 
             model.put("message", "Dealer has blackjack! Dealer wins!");
             model.put("money", (money > 0 ? "$" : "-$") + Math.abs(money));
 
         } else if (playerHand.isBlackjack() && dealerHand.isBlackjack()) {
-            template = "velocity/new.vm";
+            template = "public/new.vm";
 
             model.put("message", "Both have blackjack! Stand-off!");
             model.put("money", (money > 0 ? "$" : "-$") + Math.abs(money));
@@ -68,14 +68,14 @@ public class Controller {
         int bet = session.attribute("bet");
 
         Map<String, Object> model = new java.util.HashMap<>();
-        String template = "velocity/game.vm";
+        String template = "public/game.vm";
 
         model.put("dealerHand", session.attribute("dealerHand"));
         model.put("playerHand", playerHand);
 
         if (playerHand.getValue() > 21) {
             money -= bet;
-            template = "velocity/new.vm";
+            template = "public/new.vm";
 
             model.put("message", "Player busts! Dealer wins!");
             model.put("money", (money > 0 ? "$" : "-$") + Math.abs(money));
@@ -127,6 +127,6 @@ public class Controller {
         model.put("money", (money > 0 ? "$" : "-$") + Math.abs(money));
 
         session.attribute("money", money);
-        return View.render(model, "velocity/new.vm");
+        return View.render(model, "public/new.vm");
     };
 }

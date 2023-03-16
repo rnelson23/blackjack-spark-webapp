@@ -6,7 +6,7 @@ import app.card.Rank;
 import java.util.ArrayList;
 
 public class Deck {
-    public final ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     public Deck() {
         cards = new ArrayList<>();
@@ -27,10 +27,10 @@ public class Deck {
     }
 
     public void dealFaceUp(Hand hand) {
-        hand.cards.add(cards.remove(0).flip());
+        hand.getCards().add(cards.remove(0).flip());
     }
 
     public void dealFaceDown(Hand hand) {
-        hand.cards.add(cards.remove(0));
+        hand.getCards().add(cards.remove(0));
     }
 }
