@@ -9,13 +9,13 @@
     <h1>Blackjack</h1>
     <h2>Dealer: $dealerHand.value</h2>
     <div class="container">
-        #foreach($card in $dealerHand.cards)
+        #foreach( $card in $dealerHand.cards )
             <pre><code>$card</code></pre>
         #end
     </div>
     <h2>Player: $playerHand.value</h2>
     <div class="container">
-        #foreach($card in $playerHand.cards)
+        #foreach( $card in $playerHand.cards )
             <pre><code>$card</code></pre>
         #end
     </div>
