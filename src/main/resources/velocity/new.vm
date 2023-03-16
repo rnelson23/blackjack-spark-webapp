@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Blackjack</h1>
+    <h2>Dealer: $dealerHand.value</h2>
+    <div class="container">
+        #foreach($card in $dealerHand.cards)
+            <pre><code>$card</code></pre>
+        #end
+    </div>
+    <h2>Player: $playerHand.value</h2>
+    <div class="container">
+        #foreach($card in $playerHand.cards)
+            <pre><code>$card</code></pre>
+        #end
+    </div>
+    <h2>$message</h2>
+    <p>Money: $money</p>
+    <form action="/deal" method="post">
+        <label><input type="number" name="bet" min="1" placeholder="Bet"></label>
+        <input type="submit" value="Deal">
+    </form>
+</body>
+</html>
