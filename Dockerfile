@@ -1,10 +1,14 @@
-FROM openjdk:19
+FROM maven:3.8.7-openjdk-18 AS build
 
-WORKDIR /app
+COPY src /usr/src/app/src
+COPY pom.xml /usr/src/app
 
-COPY target/blackjack-1.0.jar .
-COPY target/lib lib
+RUN mvn -f /usr/src/app/pom.xml clean package
 
-CMD ["java", "-jar", "blackjack-1.0.jar"]
+FROM openjdk:18
+
+COPY --from=build /usr/src/app/target/blackjack-1.0-SNAPSHOT-jar-with-dependencies.jar /usr/src/app/blackjack-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/usr/src/app/blackjack-1.0-SNAPSHOT-jar-with-dependencies.jar"]
